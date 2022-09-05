@@ -1,0 +1,51 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Basic EC2 instance
+
+Parameters:
+  MyKeyName:
+    Description: Select the keyname from the list
+    Type: AWS::EC2::KeyPair::KeyName
+  MyAvailabilityZone:
+    Type: String
+    Description: select the az
+    Default: us-east-2a
+    AllowedValues:
+      - us-east-2a
+      - us-east-2b
+      - us-east-2c
+  MyInstanceType:
+    Type: AWS::SSM::Parameter::Value<String>
+    Description: select the instance type
+    Default: /dev/ec2/instanceType
+  MyInstanceImage:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Description: select the instance type
+    Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2
+Resources:
+  MyElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MyInstance
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: separate group with only ssh
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: !Ref MyAvailabilityZone
+      ImageId: !Ref MyInstanceImage #ami-0568773882d492fc8
+      InstanceType: !Ref MyInstanceType
+      KeyName: !Ref MyKeyName
+      SecurityGroups:
+        - default
+        - !Ref SSHSecurityGroup

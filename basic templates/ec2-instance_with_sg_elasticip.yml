@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Basic EC2 instance
+
+Resources:
+  MyElasticIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      InstanceId: !Ref MyInstance
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: separate group with only ssh
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          CidrIp: 0.0.0.0/0
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: us-east-2a
+      ImageId: ami-0568773882d492fc8
+      InstanceType: t2.nano
+      KeyName: test
+      SecurityGroups:
+        - default
+        - !Ref SSHSecurityGroup

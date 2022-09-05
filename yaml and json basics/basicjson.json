@@ -1,0 +1,18 @@
+{
+  "name": "prakash verma",
+  "addr": "hyd",
+  "skills": ["AWS","Azure","GCP"],
+  "address": [
+{
+    "country": "india",
+    "state": "telangana",
+    "pin": 500032 
+ },
+{
+    "country": "australia",
+    "state": "sydney",
+    "pin": 2005 
+ }
+
+] 
+}

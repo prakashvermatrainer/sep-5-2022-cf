@@ -1,0 +1,14 @@
+Resources: #dictionary
+  MyInstance: # dictionary  -----> logical name for this resource
+    Type: AWS::EC2::Instance #---> type of resource
+    Properties: #dictionary the set of properties to configure this resource
+      AvailabilityZone: us-east-2a     # optional
+      ImageId: ami-0568773882d492fc8     # required
+      InstanceType: t2.micro
+
+
+# Resources:
+#     Logical ID:
+#         Type: Resource type
+#         Properties:
+#             set of properties

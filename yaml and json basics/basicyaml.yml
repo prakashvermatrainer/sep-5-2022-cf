@@ -1,0 +1,25 @@
+---
+name: prakash verma
+addr: hyd
+skills1:
+- AWS
+- Azure
+- GCP
+skills2: [AWS,Azure,GCP]
+address:
+- country: india
+  state: telangana #sdffs
+  pin: 500032
+  phone:
+  - 123
+  - 456
+  description: >
+    sdfsdfsdfdsf
+    
+    sdfdsfsdfdsfs
+    
+    sdfdsfsdfdsfsdf
+    sdfdsfdsfdsffdf
+- country: australia
+  state: sydney
+  pin: 2005
