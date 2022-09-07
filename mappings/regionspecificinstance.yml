@@ -1,0 +1,23 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Mappings:
+  RegionImage:
+    us-east-1:
+      imageid: ami-05fa00d4c63e32376
+    us-east-2:
+      imageid: ami-0568773882d492fc8
+    us-west-2:
+      imageid: ami-0c2ab3b8efb09f272
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - RegionImage
+        - !Ref AWS::Region
+        - imageid
+      InstanceType: t2.nano
+
+#ami-05fa00d4c63e32376 us-east-1
+#ami-0568773882d492fc8 us-east-2
+#ami-0c2ab3b8efb09f272 us-west-2

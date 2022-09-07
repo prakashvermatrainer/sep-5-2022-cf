@@ -1,0 +1,8 @@
+Resources: #dictionary
+  MyInstance: # dictionary  -----> logical name for this resource
+    Type: AWS::EC2::Instance #---> type of resource
+    Properties: #dictionary the set of properties to configure this resource
+      ImageId: ami-05fa00d4c63e32376    # required
+      InstanceType: t2.nano
+      SecurityGroups:
+        - !ImportValue SSHSecurityGroup

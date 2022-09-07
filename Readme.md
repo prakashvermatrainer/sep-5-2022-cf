@@ -1,2 +1,3 @@
 - [Download link for aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [python 3 download link](https://www.python.org/downloads/release/python-3106/)
+- [cfn heper scripts](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-helper-scripts-reference.html)

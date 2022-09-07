@@ -1,0 +1,33 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  EnvironmentName:
+    Description: select the environment type
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+Mappings:
+  RegionImage:
+    us-east-1:
+      imageid: ami-05fa00d4c63e32376
+    us-east-2:
+      imageid: ami-0568773882d492fc8
+    us-west-2:
+      imageid: ami-0c2ab3b8efb09f272
+
+  EnvironmentMap:
+    dev:
+      instanceType: t2.nano
+    prod:
+      instanceType: t2.small
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap [RegionImage, !Ref AWS::Region, imageid]
+      InstanceType: !FindInMap
+        - EnvironmentMap
+        - !Ref EnvironmentName
+        - instanceType

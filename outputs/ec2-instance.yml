@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Basic EC2 instance
+Resources: #dictionary
+  MyInstance: # dictionary  -----> logical name for this resource
+    Type: AWS::EC2::Instance #---> type of resource
+    Properties: #dictionary the set of properties to configure this resource
+      ImageId: ami-0568773882d492fc8     # required
+      InstanceType: t2.micro
+Outputs:
+  InstanceId:
+    Description: EC2 Instance ID generated
+    Value: !Ref MyInstance
+    Export:
+      Name: !Sub "${AWS::StackName}-InstanceId"
+  InstanceAZ:
+    Description: Instance AvailabilityZone
+    Value: !GetAtt MyInstance.AvailabilityZone
+    Export:
+      Name: !Sub "${AWS::StackName}-InstanceAz"

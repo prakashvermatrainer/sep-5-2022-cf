@@ -1,0 +1,21 @@
+---
+AWSTemplateFormatVersion: "2010-09-09"
+Parameter:
+  ReferenceStack:
+    Description: select the previous reference stack
+    Type: String
+Resources:
+  MountPoint:
+    Type: AWS::EC2::VolumeAttachment
+    Properties:
+      Device: /dev/sdh     # required
+      InstanceId: Fn::ImportValue:
+        !Join ["-",[!Ref 'ReferenceStack',InstanceId]] # required
+      VolumeId: !Ref  NewVolume    # required
+  NewVolume:
+    Type: AWS::EC2::Volume
+    Properties:
+      AvailabilityZone: Fn::ImportValue:
+        !Join ["-",[!Ref 'ReferenceStack',InstanceAz]]
+        #!Sub ${ReferenceStack}-InstanceAz
+      Size: 1
