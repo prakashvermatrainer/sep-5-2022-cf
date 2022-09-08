@@ -1,0 +1,17 @@
+{
+    "Statement" : [
+    {
+    "Effect" : "Allow",
+    "Action" : "Update:*",
+    "NotAction": "Update:Delete",
+    "Principal": "*",
+    "Resource" : "*"
+    },
+    {
+    "Effect" : "Deny",
+    "Action" : "Update:Replace",
+    "Principal": "*",
+    "Resource" : "LogicalResourceId/WebServer"
+    }
+    ]
+}
